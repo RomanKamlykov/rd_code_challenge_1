@@ -1,0 +1,35 @@
+version: "3.7"
+
+services:
+    db:
+        image: mysql:5.7
+        environment:
+            MYSQL_ROOT_PASSWORD: "my-secret-pw"
+            MYSQL_DATABASE: "rd_code_challenge"
+            MYSQL_USER: "user1"
+            MYSQL_PASSWORD: "password1"
+        ports:
+            - "3306:3306"
+        volumes:
+            - "./mysqldata:/var/lib/mysql"
+        healthcheck:
+            test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+            timeout: 20s
+            retries: 10
+    server:
+        image: node:16.13.0-alpine
+        environment:
+            MYSQL_HOST: "db"
+            MYSQL_PORT: "3306"
+            MYSQL_DATABASE: "rd_code_challenge"
+            MYSQL_USER: "user1"
+            MYSQL_PASSWORD: "password1"
+        ports:
+            - "3000:3000"
+        working_dir: "/server"
+        volumes:
+            - "./server:/server"
+        command: npm run dev
+        depends_on:
+            db:
+                condition: service_healthy
