@@ -1,0 +1,26 @@
+{
+    "name": "server",
+    "version": "1.0.0",
+    "main": "main.js",
+    "type": "module",
+    "scripts": {
+        "start": "node main.js",
+        "dev": "nodemon main.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "mysql": "2.18.1",
+        "typeorm": "0.3.4",
+        "koa": "2.13.4",
+        "koa-router": "10.1.1",
+        "koa-body": "4.2.0",
+        "koa-static": "5.0.0",
+        "@fast-csv/parse": "4.3.6",
+        "moment": "2.29.1"
+    },
+    "devDependencies": {
+        "nodemon": "2.0.15"
+    }
+}
