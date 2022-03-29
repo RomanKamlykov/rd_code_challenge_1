@@ -32,3 +32,4 @@ The app is available at http://localhost:3000/:
 - add authentication with Passport
 - add validation with Joi
 - add API documentation with Swagger & OpenAPI
+- add tests with Jest
