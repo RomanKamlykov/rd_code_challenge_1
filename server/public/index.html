@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div class="container-fluid">
+            <div class="row pt-3">
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control" ref="file" v-on:change="uploadFileToServer">
+                        <input type="button" class="btn btn-outline-secondary" value="Clear the table" v-on:click="deleteDataOnServer">
+                    </div>
+                </div>
+            </div>
+            <div class="row px-3 py-3">
+                <table class="table table-hover table-sm">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Ad Unit Name</th>
+                            <th>Ad Unit ID</th>
+                            <th>Typetag</th>
+                            <th>Revenue Source</th>
+                            <th>Market</th>
+                            <th>Queries</th>
+                            <th>Clicks</th>
+                            <th>Impressions</th>
+                            <th>Page Rpm</th>
+                            <th>Impression Rpm</th>
+                            <th>True Revenue</th>
+                            <th>Coverage</th>
+                            <th>Ctr</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in items" v-bind:key="item.id">
+                            <td>{{ item.date }}</td>
+                            <td>{{ item.ad_unit_name }}</td>
+                            <td>{{ item.ad_unit_id }}</td>
+                            <td>{{ item.typetag }}</td>
+                            <td>{{ item.revenue_source }}</td>
+                            <td>{{ item.market }}</td>
+                            <td>{{ item.queries }}</td>
+                            <td>{{ item.clicks }}</td>
+                            <td>{{ item.impressions }}</td>
+                            <td>{{ Number.parseInt(item.page_rpm).toFixed(2) }}</td>
+                            <td>{{ Number.parseInt(item.impression_rpm).toFixed(2) }}</td>
+                            <td>${{ Number.parseInt(item.true_revenue).toFixed(2) }}</td>
+                            <td>{{ Number.parseInt(item.coverage).toFixed(2) }}%</td>
+                            <td>{{ item.ctr }}</td>
+                        </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+    <script src="services.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
